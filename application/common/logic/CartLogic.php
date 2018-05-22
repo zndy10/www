@@ -49,8 +49,10 @@ class CartLogic extends Model
     public function setUniqueId($uniqueId){
         $this->session_id = $uniqueId;
     }
+
     /**
      * 包含一个商品模型
+     *
      * @param $goods_id
      */
     public function setGoodsModel($goods_id)
