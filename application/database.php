@@ -13,11 +13,11 @@ return [
     // 数据库类型
     'type'           => 'mysql',
     // 服务器地址
-    'hostname'       => '127.0.0.1',
+    'hostname'       => 'http://120.55.60.52/',
     // 数据库名
-    'database'       => 'tpshop2.5.0',
+    'database'       => 'xhshop',
     // 用户名
-    'username'       => 'xhshop',
+    'username'       => 'root',
     // 密码
     'password'       => 'dsaixiaer',
     // 端口
