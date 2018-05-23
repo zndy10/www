@@ -48,5 +48,6 @@ return [
     'auto_timestamp' => false,
     // 是否需要进行SQL性能分析
     'sql_explain'    => false,
+    // 测试数据库连接
 
 ];
