@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:41:"./application/admin/view/index\index.html";i:1525677894;s:59:"D:\phpStudy\WWW\www\application\admin\view\public\left.html";i:1522317281;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:41:"./application/admin/view/index\index.html";i:1527583196;s:59:"D:\phpStudy\WWW\www\application\admin\view\public\left.html";i:1527581356;}*/ ?>
 <!doctype html>
 <html>
 <head>
@@ -33,7 +33,6 @@
   <div class="bgSelector"></div>
   <div id="foldSidebar"><i class="fa fa-outdent " title="展开/收起侧边导航"></i></div>
   <div class="admincp-name" onClick="javascript:openItem('welcome|Index');">
-    <!-- <h2 style="cursor:pointer;">TPshop2.0<br>平台系统管理中心</h2> -->
     <img  style="width: 148px;height: 28px" src="<?php echo (isset($tpshop_config['shop_info_admin_home_logo']) && ($tpshop_config['shop_info_admin_home_logo'] !== '')?$tpshop_config['shop_info_admin_home_logo']:'/public/static/images/logo/xh_logo.jpg'); ?>" alt="111">
   </div>
   <div class="nc-module-menu">
@@ -120,7 +119,7 @@
     	<?php endforeach; endif; else: echo "" ;endif; ?>
     </div>
     <?php endforeach; endif; else: echo "" ;endif; ?> 
-    <div class="about" title="关于系统" onclick="javascript:layer.open({type: 2,title: '关于我们',shadeClose: true,shade: 0.3,area: ['50%', '60%'],content:'<?php echo U("Index/about"); ?>', });"><i class="fa fa-copyright"></i><span>tpshop.cn</span></div>
+    <!--<div class="about" title="关于系统" onclick="javascript:layer.open({type: 2,title: '关于我们',shadeClose: true,shade: 0.3,area: ['50%', '60%'],content:'<?php echo U("Index/about"); ?>', });"><i class="fa fa-copyright"></i><span>tpshop.cn</span></div>-->
 </div>
   <div class="admincp-container-right">
     <div class="top-border"></div>

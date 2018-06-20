@@ -175,6 +175,7 @@ function getAllMenu(){
 					array('name' => '品牌列表', 'act'=>'brandList', 'control'=>'Goods'),
 					array('name' => '商品评论','act'=>'index','control'=>'Comment'),
 					array('name' => '商品咨询','act'=>'ask_list','control'=>'Comment'),
+					array('name' => '预警库存','act'=>'waringList','control'=>'Goods'),
 			)),
 			'order' => array('name' => '订单管理', 'icon'=>'fa-money', 'sub_menu' => array(
 					array('name' => '订单列表', 'act'=>'index', 'control'=>'Order'),

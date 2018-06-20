@@ -1,16 +1,8 @@
 <?php
 /**
- * tpshop
- * ============================================================================
- * 版权所有 2015-2027 深圳搜豹网络科技有限公司，并保留所有权利。
- * 网站地址: http://www.tp-shop.cn
- * ----------------------------------------------------------------------------
- * 这不是一个自由软件！您只能在不用于商业目的的前提下对程序代码进行修改和使用 .
- * 不允许对程序代码以任何形式任何目的的再发布。
- * 采用最新Thinkphp5助手函数特性实现单字母函数M D U等简写方式
- * ============================================================================
- * Author: IT宇宙人     
- * Date: 2015-09-09
+ * xhshop
+ *
+ * Author: liushuai
  */
 namespace app\admin\controller;
 use app\admin\logic\GoodsLogic;
@@ -850,5 +842,61 @@ class Goods extends Base {
         $region_list = $goodsLogic->getRegionList();//获取配送地址列表
         file_put_contents(ROOT_PATH."public/js/locationJson.js", "var locationJsonInfoDyr = ".json_encode($region_list, JSON_UNESCAPED_UNICODE).';');
         $this->success('初始化地区json.js成功。文件位置为'.ROOT_PATH."public/js/locationJson.js");
+    }
+
+    /**
+     * 预警库存列表
+     */
+    public function waringList(){
+        $GoodsLogic = new GoodsLogic();
+        $brandList = $GoodsLogic->getSortBrands();
+        $categoryList = $GoodsLogic->getSortCategory();
+        $this->assign('categoryList',$categoryList);
+        $this->assign('brandList',$brandList);
+        return $this->fetch();
+    }
+
+    /**
+     * 预警库存列表
+     */
+    public function ajaxWaringList(){
+
+        $where = ' 1 = 1 '; // 搜索条件
+        I('intro')    && $where = "$where and ".I('intro')." = 1" ;
+        I('brand_id') && $where = "$where and brand_id = ".I('brand_id') ;
+        (I('is_on_sale') !== '') && $where = "$where and is_on_sale = ".I('is_on_sale') ;
+        $cat_id = I('cat_id');
+        // 关键词搜索
+        $key_word = I('key_word') ? trim(I('key_word')) : '';
+        if($key_word)
+        {
+            $where = "$where and (goods_name like '%$key_word%' or goods_sn like '%$key_word%')" ;
+        }
+
+        if($cat_id > 0)
+        {
+            $grandson_ids = getCatGrandson($cat_id);
+            $where .= " and cat_id in(".  implode(',', $grandson_ids).") "; // 初始化搜索条件
+        }
+
+        $where .= " and store_count < 20"; // 库存数量小于20
+//p($where);die;
+        $count = M('Goods')->where($where)->count();
+        $Page  = new AjaxPage($count,20);
+        /**  搜索条件下 分页赋值
+        foreach($condition as $key=>$val) {
+        $Page->parameter[$key]   =   urlencode($val);
+        }
+         */
+        $show = $Page->show();
+        $order_str = "`{$_POST['orderby1']}` {$_POST['orderby2']}";
+        $goodsList = M('Goods')->where($where)->order($order_str)->limit($Page->firstRow.','.$Page->listRows)->select();
+
+        $catList = D('goods_category')->select();
+        $catList = convert_arr_key($catList, 'id');
+        $this->assign('catList',$catList);
+        $this->assign('goodsList',$goodsList);
+        $this->assign('page',$show);// 赋值分页输出
+        return $this->fetch();
     }
 }

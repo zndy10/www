@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:45:"./application/admin/view/goods\goodsList.html";i:1528197710;s:61:"D:\phpStudy\WWW\www\application\admin\view\public\layout.html";i:1522317281;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:46:"./application/admin/view/goods\waringList.html";i:1528285224;s:61:"D:\phpStudy\WWW\www\application\admin\view\public\layout.html";i:1522317281;}*/ ?>
 <!doctype html>
 <html>
 <head>
@@ -218,7 +218,7 @@
   <div class="flexigrid">
     <div class="mDiv">
       <div class="ftitle">
-        <h3>商品列表</h3>
+        <h3>预警库存列表</h3>
         <h5></h5>
       </div>
         <a href=""><div title="刷新数据" class="pReload"><i class="fa fa-refresh"></i></div></a>
@@ -370,7 +370,7 @@
         cur_page = page; //当前页面 保存为全局变量
         $.ajax({
             type: "POST",
-            url: "/index.php?m=Admin&c=goods&a=ajaxGoodsList&p=" + page,//+tab,
+            url: "/index.php?m=Admin&c=goods&a=ajaxWaringList&p=" + page,//+tab,
             data: $('#' + form).serialize(),// 你的formid
             success: function (data) {
                 $("#flexigrid").html('');

@@ -35,9 +35,9 @@ class System extends Base
             'shopping'  => '购物流程设置',
             'smtp'      => '邮件设置',
             'water'     => '水印设置',
-            'distribut' => '分销设置',
+//            'distribut' => '分销设置',
             'push'      => '推送设置',
-            'oss'       => '对象存储',
+//            'oss'       => '对象存储',
             'express'	=> '物流设置'
         ];		
 		$this->assign('group_list',$group_list);
